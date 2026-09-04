@@ -7,11 +7,11 @@
   </head>
   <body>
 
-    <a-scene mindar-image="imageTargetSrc: ./markerc.mind; maxTrack: 5" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene mindar-image="imageTargetSrc: ./markerc.mind; maxTrack: 4" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
         
         <a-asset-item id="chattiniModel" src="./Chattini.glb"></a-asset-item>
-        <a-asset-item id="HachiwareModel" src="./hachiware_test"></a-asset-item>
+       
         <a-asset-item id="ChiikawaModel" src="./chiikawa.glb"></a-asset-item>
         <a-asset-item id="UsagiModel" src="./usagi.glb"></a-asset-item>
         <a-asset-item id="ALLModel" src="./chiikawasitos.glb"></a-asset-item>
@@ -23,16 +23,14 @@
       <a-entity mindar-image-target="targetIndex: 0">
        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="1 1 1" src="#chattiniModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
       </a-entity>
+      
       <a-entity mindar-image-target="targetIndex: 1">
-       <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="1 1 1" src="#HachiwareModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
-      </a-entity>
-      <a-entity mindar-image-target="targetIndex: 2">
        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.5 0.5 0.5" src="#ChiikawaModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
       </a-entity>
-      <a-entity mindar-image-target="targetIndex: 3">
+      <a-entity mindar-image-target="targetIndex: 2">
        <a-gltf-model rotation="0 0 180 " position="0 0 0.1" scale="0.5 0.5 0.5" src="#UsagiModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
       </a-entity>
-      <a-entity mindar-image-target="targetIndex: 4">
+      <a-entity mindar-image-target="targetIndex: 3">
        <a-gltf-model rotation="0 0 180 " position="-1 0 0.1" scale="1 1 1" src="#ALLModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
       </a-entity>
     </a-scene>

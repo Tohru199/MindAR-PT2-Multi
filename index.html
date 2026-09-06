@@ -17,67 +17,12 @@
   const usagi = document.querySelector('#usagi');
   const all = document.querySelector('#all');
 
-        
-
-console.log("Chattini:", chattini.object3D);
-console.log("Chiikawa:", chiikawa.object3D);
-console.log("Usagi:", usagi.object3D);
-console.log("All:", all.object3D);
-chattini.addEventListener("model-loaded", () => {
-  console.log("Chattini terminó de cargar");
-});
-
-chiikawa.addEventListener("model-loaded", () => {
-  console.log("Chiikawa terminó de cargar");
-});
-
-usagi.addEventListener("model-loaded", () => {
-  console.log("Usagi terminó de cargar");
-});
-
-all.addEventListener("model-loaded", () => {
-  console.log("ALL terminó de cargar");
-});
-
-chattini.addEventListener("model-loaded", () => {
-  chattini.object3D.traverse(obj => {
-    if (obj.isMesh) {
-       obj.geometry.computeBoundingBox();
-      obj.geometry.computeBoundingSphere();
-    }
-
-  });
-
-  console.log("Límites de Chattini recalculados");
-});
-
-usagi.addEventListener("model-loaded", () => {
-  usagi.object3D.traverse(obj => {
-    if (obj.isMesh) {
-       obj.geometry.computeBoundingBox();
-      obj.geometry.computeBoundingSphere();
-    }
-
-  });
-
-  console.log("Límites de Usagi recalculados");
-});
-
-
-        
-
-  chattini.addEventListener("mouseenter", event => {
-  console.log("mouse sobre CHATTINI");
-});
   chattini.addEventListener("click", event => {
   console.log("chattini click");
   });
   chiikawa.addEventListener("click", event => {
   console.log("chiikawa click");
   });
-  usagi.addEventListener("mouseenter", event => {
-  console.log("mouse sobre USAGI");
-});
   usagi.addEventListener("click", event => {
   console.log("usagi click");
   });
@@ -103,7 +48,7 @@ usagi.addEventListener("model-loaded", () => {
 
 
       
-      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000" ></a-camera>
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable" ></a-camera>
 
 
       

@@ -40,11 +40,19 @@ all.addEventListener("model-loaded", () => {
 });
 
 chattini.addEventListener("model-loaded", () => {
-  console.log("CHATTINI OBJETOS:", chattini.object3D.children);
+  chattini.object3D.traverse(obj => {
+    if (obj.isMesh) {
+      console.log("CHATTINI MESH:", obj);
+    }
+  });
 });
 
 usagi.addEventListener("model-loaded", () => {
-  console.log("USAGI OBJETOS:", usagi.object3D.children);
+  usagi.object3D.traverse(obj => {
+    if (obj.isMesh) {
+      console.log("USAGI MESH:", obj);
+    }
+  });
 });
 
 
@@ -87,7 +95,7 @@ usagi.addEventListener("model-loaded", () => {
 
 
       
-      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable" ></a-camera>
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000" ></a-camera>
 
 
       

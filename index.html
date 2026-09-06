@@ -42,17 +42,25 @@ all.addEventListener("model-loaded", () => {
 chattini.addEventListener("model-loaded", () => {
   chattini.object3D.traverse(obj => {
     if (obj.isMesh) {
-      console.log("CHATTINI MESH:", obj);
+       obj.geometry.computeBoundingBox();
+      obj.geometry.computeBoundingSphere();
     }
+
   });
+
+  console.log("Límites de Chattini recalculados");
 });
 
 usagi.addEventListener("model-loaded", () => {
   usagi.object3D.traverse(obj => {
     if (obj.isMesh) {
-      console.log("USAGI MESH:", obj);
+       obj.geometry.computeBoundingBox();
+      obj.geometry.computeBoundingSphere();
     }
+
   });
+
+  console.log("Límites de Usagi recalculados");
 });
 
 

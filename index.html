@@ -5,6 +5,11 @@
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
+    <!-- Escucha los eventos y pone logs en la consola cuando la escena se carga -->
+
+    <!-- Asigna valor a las variables const de cada modelo buscándolas con query selector -->
+
+    <!-- Detecta el click sobre cada modelo y arroja un log, además de añadir el sonido -->
     <script> 
       document.addEventListener("DOMContentLoaded", function() {
     const sceneEl = document.querySelector('a-scene');
@@ -12,25 +17,55 @@
         console.log("¡Escena cargada!");
       });
 
+  
   const chattini = document.querySelector('#chattini');
   const chiikawa = document.querySelector('#chiikawa');
   const usagi = document.querySelector('#usagi');
   const all = document.querySelector('#all');
+  const chiikawaSound = document.querySelector("#chiikawaSound");
+  const allSound = document.querySelector("#allSound");
 
   chattini.addEventListener("click", event => {
   console.log("chattini click");
   });
+
+        
   chiikawa.addEventListener("click", event => {
   console.log("chiikawa click");
+    
+  chiikawaSound.currentTime = 0;
+  chiikawaSound.play();
+    
+    const rotacion = chiikawa.getAttribute("rotation");
+    chiikawa.setAttribute("animation__spin", {
+    property: "rotation",
+    to: `${rotacion.x} ${rotacion.y + 360} ${rotacion.z}`,
+    dur: 1000,
+    easing: "easeInOutQuad"
+      });
   });
+
+        
   usagi.addEventListener("click", event => {
   console.log("usagi click");
   });
   all.addEventListener("click", event => {
   console.log("all click");
+
+  allSound.currentTime = 0;
+  allSound.play();
+
+  
+  const rotacion = all.getAttribute("rotation");
+  all.setAttribute("animation__spin", {
+    property: "rotation",
+    to: `${rotacion.x} ${rotacion.y + 360} ${rotacion.z}`,
+    dur: 1000,
+    easing: "easeInOutQuad"
   });
 
-  });
+});
+
   </script>
   </head>
 
@@ -39,19 +74,24 @@
 
     <a-scene mindar-image="imageTargetSrc: ./markerc.mind; maxTrack: 4" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
-        
+
+        <!-- Modelos -->
         <a-asset-item id="chattiniModel" src="./Chattini.glb"></a-asset-item>
         <a-asset-item id="ChiikawaModel" src="./chiikawa.glb"></a-asset-item>
         <a-asset-item id="UsagiModel" src="./usagi.glb"></a-asset-item>
         <a-asset-item id="ALLModel" src="./chiikawasitos.glb"></a-asset-item>
+
+        <!-- Sonidos -->
+        <audio id="chiikawaSound" src="./Chikawant.mp3"></audio>
+        <audio id="allSound" src="./chiikawahonk.mp3"></audio>
       </a-assets>
 
 
-      
+      <!-- Raycast para el mouse y que pueda hacer click -->
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable" ></a-camera>
 
 
-      
+      <!-- Por cada imagen del index, se llama un modelo y se le pone el atributo de ser clickeable -->
       <a-entity mindar-image-target="targetIndex: 0">
        <a-gltf-model id="chattini" class="clickable" rotation="0 0 0 " position="0 0 0.1" scale="1 1 1" src="#chattiniModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
       </a-entity>

@@ -43,6 +43,26 @@
     opacity: 0.6;
   }
 
+      #click-message {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+#click-message.hidden {
+  display: none;
+}
+
+#click-message p {
+  font-size: 30px;
+  font-family: sans-serif;
+  color: white;
+  text-shadow: 0 2px 5px black;
+}
+      
 </style>
 
     <!-- Escucha los eventos y pone logs en la consola cuando la escena se carga -->
@@ -52,18 +72,32 @@
     <!-- Detecta el click sobre cada modelo y arroja un log, además de añadir el sonido -->
     <script> 
       document.addEventListener("DOMContentLoaded", function() {
-    const sceneEl = document.querySelector('a-scene');
-  sceneEl.addEventListener("loaded", function () {
-        console.log("¡Escena cargada!");
+        const sceneEl = document.querySelector('a-scene');
+        sceneEl.addEventListener("loaded", function () {
+          console.log("¡Escena cargada!");
       });
 
-  
+  const clickMessage = document.querySelector("#click-message");
   const chattini = document.querySelector('#chattini');
   const chiikawa = document.querySelector('#chiikawa');
   const usagi = document.querySelector('#usagi');
   const all = document.querySelector('#all');
   const chiikawaSound = document.querySelector("#chiikawaSound");
   const allSound = document.querySelector("#allSound");
+
+  const targets = document.querySelectorAll("[mindar-image-target]");
+        
+        targets.forEach(target => {
+
+  target.addEventListener("targetFound", () => {
+    clickMessage.classList.remove("hidden");
+  });
+
+  target.addEventListener("targetLost", () => {
+    clickMessage.classList.add("hidden");
+  });
+
+});
 
   chattini.addEventListener("click", event => {
   console.log("chattini click");
@@ -113,16 +147,15 @@
   <body>
 
     <div id="scanning-overlay" class="hidden">
+      <div class="scanning-content">
+        <p>¡Busca una de estas imagenes con la cámara!</p>
+        <img src="./UIImage.jpg">
+      </div>
+    </div>
 
-  <div class="scanning-content">
-
-    <p>¡Escanea una de estas!</p>
-
-    <img src="./UIImage.jpg">
-
-  </div>
-
-</div>
+    <div id="click-message" class="hidden">
+      <p>¡Haz click en él!</p>
+    </div>
 
     <a-scene mindar-image="imageTargetSrc: ./markerc.mind; maxTrack: 4; uiScanning: #scanning-overlay; uiLoading: no; uiError: no" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>

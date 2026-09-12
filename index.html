@@ -85,18 +85,23 @@
   const chiikawaSound = document.querySelector("#chiikawaSound");
   const allSound = document.querySelector("#allSound");
 
-  const targets = document.querySelectorAll("[mindar-image-target]");
-        
-        targets.forEach(target => {
+  const chiikawaTarget = document.querySelector('[mindar-image-target="targetIndex: 1"]');
+  const allTarget = document.querySelector('[mindar-image-target="targetIndex: 3"]');
 
-  target.addEventListener("targetFound", () => {
-    clickMessage.classList.remove("hidden");
-  });
+chiikawaTarget.addEventListener("targetFound", () => {
+  clickMessage.classList.remove("hidden");
+});
 
-  target.addEventListener("targetLost", () => {
-    clickMessage.classList.add("hidden");
-  });
+chiikawaTarget.addEventListener("targetLost", () => {
+  clickMessage.classList.add("hidden");
+});
 
+allTarget.addEventListener("targetFound", () => {
+  clickMessage.classList.remove("hidden");
+});
+
+allTarget.addEventListener("targetLost", () => {
+  clickMessage.classList.add("hidden");
 });
 
   chattini.addEventListener("click", event => {
